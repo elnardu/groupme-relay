@@ -1,0 +1,14 @@
+[package]
+name = "groupme-relay"
+version = "0.1.0"
+authors = ["elnardu <elnardu2@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+hyper = "0.12"
+reqwest = "0.9.19"
+futures = "0.1.28"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+envy = "0.4.0"
+tokio = "0.1.22"
