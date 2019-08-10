@@ -107,6 +107,8 @@ fn main() {
     let config = envy::from_env::<Config>()
         .expect("Configuration failed! Make sure have set all required fields.");
 
+    println!("{:#?}", &config);
+
     let addr = ([0, 0, 0, 0], config.port).into();
 
     hyper::rt::run(future::lazy(move || {
