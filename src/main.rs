@@ -78,6 +78,7 @@ struct Config {
     tg_token: String,
     tg_chat_id: String,
     path_secret: String,
+    port: u16,
 }
 
 #[derive(Debug, Clone)]
@@ -103,16 +104,13 @@ impl App {
 }
 
 fn main() {
-    let addr = ([0, 0, 0, 0], 4200).into();
-
     let config = envy::from_env::<Config>()
         .expect("Configuration failed! Make sure have set all required fields.");
 
+    let addr = ([0, 0, 0, 0], config.port).into();
+
     hyper::rt::run(future::lazy(move || {
         let client = Client::new();
-
-        //        let https = HttpsConnector::new(4).unwrap();
-        //        let client = Client::builder().build::<_, hyper::Body>(https);
 
         let app = App::new(client, config);
 
